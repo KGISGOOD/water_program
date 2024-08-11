@@ -3,19 +3,19 @@ from bs4 import BeautifulSoup
 
 # 目標URL列表
 urls = [
-    'https://news.google.com/search?q=%E5%9C%8B%E9%9A%9B%E5%A4%A7%E9%9B%A8%20when%3A30d&hl=zh-TW&gl=TW&ceid=TW%3Azh-Hant',#國際大雨 when:30d
-    'https://news.google.com/search?q=%E5%9C%8B%E9%9A%9B%E8%B1%AA%E9%9B%A8%20when%3A30d&hl=zh-TW&gl=TW&ceid=TW%3Azh-Hant',#國際豪雨 when:30d
-    'https://news.google.com/search?q=%E5%9C%8B%E9%9A%9B%E6%9A%B4%E9%9B%A8%20when%3A30d&hl=zh-TW&gl=TW&ceid=TW%3Azh-Hant',#國際暴雨 when:30d
-    'https://news.google.com/search?q=%E5%9C%8B%E9%9A%9B%E6%B7%B9%E6%B0%B4%20when%3A30d&hl=zh-TW&gl=TW&ceid=TW%3Azh-Hant',#國際淹水 when:30d
-    'https://news.google.com/search?q=%E5%9C%8B%E9%9A%9B%E6%B4%AA%E6%B0%B4%20when%3A30d&hl=zh-TW&gl=TW&ceid=TW%3Azh-Hant',#國際洪水 when:30d
-    'https://news.google.com/search?q=%E5%9C%8B%E9%9A%9B%E6%B0%B4%E7%81%BD%20when%3A30d&hl=zh-TW&gl=TW&ceid=TW%3Azh-Hant',#國際水災 when:30d
-    'https://news.google.com/search?q=%E5%9C%8B%E9%9A%9B%E9%A2%B1%E9%A2%A8%20when%3A30d&hl=zh-TW&gl=TW&ceid=TW%3Azh-Hant',#國際颱風 when:30d
-    'https://news.google.com/search?q=%E5%9C%8B%E9%9A%9B%E9%A2%B6%E9%A2%A8%20when%3A30d&hl=zh-TW&gl=TW&ceid=TW%3Azh-Hant',#國際颶風 when:30d
-    'https://news.google.com/search?q=%E5%9C%8B%E9%9A%9B%E9%A2%A8%E7%81%BD%20when%3A30d&hl=zh-TW&gl=TW&ceid=TW%3Azh-Hant',#國際風災 when:30d
-    'https://news.google.com/search?q=%E5%9C%8B%E9%9A%9B%E6%B5%B7%E5%98%AF%20when%3A30d&hl=zh-TW&gl=TW&ceid=TW%3Azh-Hant',#國際海嘯 when:30d
-    'https://news.google.com/search?q=%E5%9C%8B%E9%9A%9B%E5%9C%B0%E9%9C%87%20when%3A30d&hl=zh-TW&gl=TW&ceid=TW%3Azh-Hant',#國際地震 when:30d
-    'https://news.google.com/search?q=%E5%9C%8B%E9%9A%9B%E4%B9%BE%E6%97%B1%20when%3A30d&hl=zh-TW&gl=TW&ceid=TW%3Azh-Hant',#國際乾旱 when:30d
-    'https://news.google.com/search?q=%E5%9C%8B%E9%9A%9B%E6%97%B1%E7%81%BD%20when%3A30d&hl=zh-TW&gl=TW&ceid=TW%3Azh-Hant'#國際旱災 when:30d
+    'https://news.google.com/search?q=%E5%9C%8B%E9%9A%9B%E5%A4%A7%E9%9B%A8%20when%3A30d&hl=zh-TW&gl=TW&ceid=TW%3Azh-Hant',  # 國際大雨 when:30d
+    'https://news.google.com/search?q=%E5%9C%8B%E9%9A%9B%E8%B1%AA%E9%9B%A8%20when%3A30d&hl=zh-TW&gl=TW&ceid=TW%3Azh-Hant',  # 國際豪雨 when:30d
+    'https://news.google.com/search?q=%E5%9C%8B%E9%9A%9B%E6%9A%B4%E9%9B%A8%20when%3A30d&hl=zh-TW&gl=TW&ceid=TW%3Azh-Hant',  # 國際暴雨 when:30d
+    'https://news.google.com/search?q=%E5%9C%8B%E9%9A%9B%E6%B7%B9%E6%B0%B4%20when%3A30d&hl=zh-TW&gl=TW&ceid=TW%3Azh-Hant',  # 國際淹水 when:30d
+    'https://news.google.com/search?q=%E5%9C%8B%E9%9A%9B%E6%B4%AA%E6%B0%B4%20when%3A30d&hl=zh-TW&gl=TW&ceid=TW%3Azh-Hant',  # 國際洪水 when:30d
+    'https://news.google.com/search?q=%E5%9C%8B%E9%9A%9B%E6%B0%B4%E7%81%BD%20when%3A30d&hl=zh-TW&gl=TW&ceid=TW%3Azh-Hant',  # 國際水災 when:30d
+    'https://news.google.com/search?q=%E5%9C%8B%E9%9A%9B%E9%A2%B1%E9%A2%A8%20when%3A30d&hl=zh-TW&gl=TW&ceid=TW%3Azh-Hant',  # 國際颱風 when:30d
+    'https://news.google.com/search?q=%E5%9C%8B%E9%9A%9B%E9%A2%B6%E9%A2%A8%20when%3A30d&hl=zh-TW&gl=TW&ceid=TW%3Azh-Hant',  # 國際颶風 when:30d
+    'https://news.google.com/search?q=%E5%9C%8B%E9%9A%9B%E9%A2%A8%E7%81%BD%20when%3A30d&hl=zh-TW&gl=TW&ceid=TW%3Azh-Hant',  # 國際風災 when:30d
+    'https://news.google.com/search?q=%E5%9C%8B%E9%9A%9B%E6%B5%B7%E5%98%AF%20when%3A30d&hl=zh-TW&gl=TW&ceid=TW%3Azh-Hant',  # 國際海嘯 when:30d
+    'https://news.google.com/search?q=%E5%9C%8B%E9%9A%9B%E5%9C%B0%E9%9C%87%20when%3A30d&hl=zh-TW&gl=TW&ceid=TW%3Azh-Hant',  # 國際地震 when:30d
+    'https://news.google.com/search?q=%E5%9C%8B%E9%9A%9B%E4%B9%BE%E6%97%B1%20when%3A30d&hl=zh-TW&gl=TW&ceid=TW%3Azh-Hant',  # 國際乾旱 when:30d
+    'https://news.google.com/search?q=%E5%9C%8B%E9%9A%9B%E6%97%B1%E7%81%BD%20when%3A30d&hl=zh-TW&gl=TW&ceid=TW%3Azh-Hant'  # 國際旱災 when:30d
 ]
 
 def fetch_news(url):
@@ -42,13 +42,33 @@ def fetch_news(url):
             })
     return articles
 
-def fetch_article_content(url):
+def fetch_article_content(url, site):
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
     
-    # 假設內文位於<div class="article-body">內，這裡根據目標網站調整
-    content_element = soup.find('div', class_='article-body')  
-    content = content_element.get_text(strip=True) if content_element else None
+    if site == 'yahoo':
+        content_element = soup.find('div', class_='caas-body')
+        paragraphs = content_element.find_all('p') if content_element else []
+        content = ' '.join([p.get_text(strip=True) for p in paragraphs])
+    
+    elif site == 'udn':
+        content_element = soup.find('div', class_='article-body__editor')
+        paragraphs = content_element.find_all('p') if content_element else []
+        content = ' '.join([p.get_text(strip=True) for p in paragraphs])
+
+    elif site == 'newtalk':
+        content_element = soup.find('div', class_='articleBody clearfix')
+        paragraphs = content_element.find_all('p') if content_element else []
+        content = ' '.join([p.get_text(strip=True) for p in paragraphs])
+    
+    elif site == 'guangming':
+        content_element = soup.find('div', class_='entry-content')
+        paragraphs = content_element.find_all('p') if content_element else []
+        content = ' '.join([p.get_text(strip=True) for p in paragraphs])
+    
+    else:
+        content = None
+
     return content
 
 # 爬取新聞標題、連結、來源和時間
@@ -59,7 +79,8 @@ for url in urls:
 
 # 針對每篇文章，爬取內文並更新結果
 for article in all_articles:
-    content = fetch_article_content(article['連結'])
+    site = 'yahoo'  # 假設這裡是從 Yahoo 爬取，根據實際情況修改
+    content = fetch_article_content(article['連結'], site)
     if content:  # 只有成功爬取到內文時才更新
         article['內文'] = content
 
